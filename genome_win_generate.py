@@ -97,6 +97,7 @@ def analysis(input_file_path='',
     # Generate a library for window with step
     win_data = defaultdict(list)
     step = int(step)
+    window_size = int(window_size)
     for name in len_data:
         start = list(range(1, int(len_data[name]) - step, step))
         end = [window_size + a for a in start]
@@ -130,7 +131,7 @@ def analysis(input_file_path='',
     # Writing data to output file
     output_file = open(output_file_path, 'w')
     for contig in output_data:
-        print(output_data[contig])
+#         print(output_data[contig])
         for position in output_data[contig]:
             output_file.write(contig + '\t' + position + '\t' + output_data[contig][position][0] + '\t' + output_data[contig][position][1] + '\n')
 
