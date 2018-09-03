@@ -96,6 +96,7 @@ def analysis(input_file_path='',
     print('Length library was built in {} seconds.'.format(str(datetime.timedelta(seconds=t4 - t3))))
     # Generate a library for window with step
     win_data = defaultdict(list)
+    step = int(step)
     for name in len_data:
         start = list(range(1, int(len_data[name]) - step, step))
         end = [window_size + a for a in start]
