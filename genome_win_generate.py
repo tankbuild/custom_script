@@ -22,8 +22,8 @@ parser = argparse.ArgumentParser(
           -l path_to_chr_length_file [-w window_size] [-s step] [-o output_file]
 
 Options:  -i\t--input-file\tPath to a file containing the iutput of depth
-\t  -l\t--chr_length\tPath to a file containing the iutput of chromosomes length
-\t  -w\t--window_size\tPath to window_size: default 500
+\t  -l\t--chr-length\tPath to a file containing the iutput of chromosomes length
+\t  -w\t--window-size\tPath to window_size: default 500
 \t  -s\t--step\tPath to step: default 250
 \t  -o\t--output-file\tPath to output file (default: male_femele_win500.tsv)
 ''')
