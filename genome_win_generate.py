@@ -14,6 +14,7 @@ python[3] genome_win_generate.py -i path_to_depth_file -l path_to_chr_length_fil
 Format of depth file containing four column (i.e. contig_name, position, male_depth and female_depth )
 Format of length file containing two column (i.e. contig_name and chromosome_length)
 **Note: The delimiter of input file should be tab !!! 
+**Common problems: OutOfMemory. Try to downsize the file to use it!!!
 
 """
 
