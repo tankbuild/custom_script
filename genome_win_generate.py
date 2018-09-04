@@ -13,7 +13,6 @@ python[3] genome_win_generate.py -i path_to_depth_file -l path_to_chr_length_fil
 
 Format of depth file containing four column (i.e. contig_name, position, male_depth and female_depth )
 Format of length file containing two column (i.e. contig_name and chromosome_length)
-Note: file delimiter should be tab
 
 """
 
@@ -73,7 +72,7 @@ def analysis(input_file_path='',
     depth_file = open(input_file_path, 'r')
     t1 = time.time()
     for line in depth_file:
-        line_split = line[:-1].split('\t')
+        line_split = line[:-1].split(' ')
         contig_name = line_split[0]
         pos = line_split[1]
         male_depth = line_split[2]
@@ -99,10 +98,11 @@ def analysis(input_file_path='',
     step = int(step)
     window_size = int(window_size)
     for name in len_data:
-        start = list(range(1, int(len_data[name]) - step, step))
+        start = list(range(1, int(len_data[name]) - window_size, step))
         end = [window_size + a for a in start]
         win_step = [(a, b) for a, b in zip(start, end)]
         win_data[name] = win_step
+#     print(win_data['NC_003489.1'])
     # Finally deal with data
     output_data = defaultdict(dict)
     for contig in depth_data:
@@ -124,7 +124,7 @@ def analysis(input_file_path='',
             if num != 0:
                 mean_win_male_depth = str(win_male_depth // num)
                 mean_win_female_depth = str(win_female_depth // num)
-                position = str(e // 2)
+                position = str(s - 1 + window_size / 2)
                 temp_dict[position].append(mean_win_male_depth)
                 temp_dict[position].append(mean_win_female_depth)
         output_data[contig] = temp_dict
