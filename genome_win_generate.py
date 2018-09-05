@@ -126,7 +126,7 @@ def analysis(input_file_path='',
             if num != 0:
                 mean_win_male_depth = str(win_male_depth // num)
                 mean_win_female_depth = str(win_female_depth // num)
-                position = str(s - 1 + window_size / 2)
+                position = str(s - 1 + window_size // 2)
                 temp_dict[position].append(mean_win_male_depth)
                 temp_dict[position].append(mean_win_female_depth)
         output_data[contig] = temp_dict
