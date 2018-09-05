@@ -58,7 +58,7 @@ if not args.chr_length or not os.path.isfile(args.chr_length):
     exit(1)
 
 if args.window_size <= args.step:
-    print('\nError: window size should be more than step')
+    print('\nError: window size should be greater than step')
     parser.print_usage()
     print()
     exit(1)
