@@ -45,14 +45,14 @@ fi
 if [ ! -f $rootdir/reads/*.gz ]
 then
     readsdir=/home/mwen/work/Project_PhyloSex.280/Run_A_melas_-_C_auratus.10511/RawData
-    ln -s $readsdir/C_auratus_femelle_S2_L001_R1_001.fastq.gz $rootdir/reads/female_L1_R1.fasta.gz
-    ln -s $readsdir/C_auratus_femelle_S2_L001_R2_001.fastq.gz $rootdir/reads/female_L1_R2.fasta.gz
-    ln -s $readsdir/C_auratus_femelle_S2_L002_R1_001.fastq.gz $rootdir/reads/female_L2_R1.fasta.gz
-    ln -s $readsdir/C_auratus_femelle_S2_L002_R2_001.fastq.gz $rootdir/reads/female_L2_R2.fasta.gz
-    ln -s $readsdir/C_auratus_male_S1_L001_R1_001.fastq.gz $rootdir/reads/male_L1_R1.fasta.gz
-    ln -s $readsdir/C_auratus_male_S1_L001_R2_001.fastq.gz $rootdir/reads/male_L1_R2.fasta.gz
-    ln -s $readsdir/C_auratus_male_S1_L002_R1_001.fastq.gz $rootdir/reads/male_L2_R1.fasta.gz
-    ln -s $readsdir/C_auratus_male_S1_L002_R2_001.fastq.gz $rootdir/reads/male_L2_R2.fasta.gz
+    ln -s $readsdir/C_auratus_femelle_S2_L001_R1_001.fastq.gz $rootdir/reads/female_L001_R1.fasta.gz
+    ln -s $readsdir/C_auratus_femelle_S2_L001_R2_001.fastq.gz $rootdir/reads/female_L001_R2.fasta.gz
+    ln -s $readsdir/C_auratus_femelle_S2_L002_R1_001.fastq.gz $rootdir/reads/female_L002_R1.fasta.gz
+    ln -s $readsdir/C_auratus_femelle_S2_L002_R2_001.fastq.gz $rootdir/reads/female_L002_R2.fasta.gz
+    ln -s $readsdir/C_auratus_male_S1_L001_R1_001.fastq.gz $rootdir/reads/male_L001_R1.fasta.gz
+    ln -s $readsdir/C_auratus_male_S1_L001_R2_001.fastq.gz $rootdir/reads/male_L001_R2.fasta.gz
+    ln -s $readsdir/C_auratus_male_S1_L002_R1_001.fastq.gz $rootdir/reads/male_L002_R1.fasta.gz
+    ln -s $readsdir/C_auratus_male_S1_L002_R2_001.fastq.gz $rootdir/reads/male_L002_R2.fasta.gz
 fi
 
 # path to reference
@@ -62,14 +62,14 @@ reference=$rootdir/genome/goldfish_genome.fasta
 gff=/home/mwen/work/genomes/goldfish/female/GCF_003368295.1_ASM336829v1_genomic.gff
 
 # path to reads
-female_L1_R1=$rootdir/reads/female_L1_R1.fasta.gz
-female_L1_R2=$rootdir/reads/female_L1_R2.fasta.gz
-female_L2_R1=$rootdir/reads/female_L2_R1.fasta.gz
-female_L2_R2=$rootdir/reads/female_L2_R2.fasta.gz
-male_L1_R1=$rootdir/reads/male_L1_R1.fasta.gz
-male_L1_R2=$rootdir/reads/male_L1_R2.fasta.gz
-male_L2_R1=$rootdir/reads/male_L2_R1.fasta.gz
-male_L2_R2=$rootdir/reads/male_L2_R2.fasta.gz
+female_L001_R1=$rootdir/reads/female_L001_R1.fasta.gz
+female_L001_R2=$rootdir/reads/female_L001_R2.fasta.gz
+female_L002_R1=$rootdir/reads/female_L002_R1.fasta.gz
+female_L002_R2=$rootdir/reads/female_L002_R2.fasta.gz
+male_L001_R1=$rootdir/reads/male_L001_R1.fasta.gz
+male_L001_R2=$rootdir/reads/male_L001_R2.fasta.gz
+male_L002_R1=$rootdir/reads/male_L002_R1.fasta.gz
+male_L002_R2=$rootdir/reads/male_L002_R2.fasta.gz
 
 # run PoolSex
 python $poolsex init -i $rootdir &&
