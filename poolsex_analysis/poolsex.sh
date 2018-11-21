@@ -61,16 +61,6 @@ reference=$rootdir/genome/goldfish_genome.fasta
 # path to gff file
 gff=/home/mwen/work/genomes/goldfish/female/GCF_003368295.1_ASM336829v1_genomic.gff
 
-# path to reads
-female_L001_R1=$rootdir/reads/female_L001_R1.fasta.gz
-female_L001_R2=$rootdir/reads/female_L001_R2.fasta.gz
-female_L002_R1=$rootdir/reads/female_L002_R1.fasta.gz
-female_L002_R2=$rootdir/reads/female_L002_R2.fasta.gz
-male_L001_R1=$rootdir/reads/male_L001_R1.fasta.gz
-male_L001_R2=$rootdir/reads/male_L001_R2.fasta.gz
-male_L002_R1=$rootdir/reads/male_L002_R1.fasta.gz
-male_L002_R2=$rootdir/reads/male_L002_R2.fasta.gz
-
 # run PoolSex
 python $poolsex init -i $rootdir &&
 
