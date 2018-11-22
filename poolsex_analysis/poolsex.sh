@@ -66,6 +66,9 @@ python $poolsex init -i $rootdir &&
 
 python $poolsex run -i $rootdir &&
 
+# path to popoolation
+# /usr/local/bioinfo/src/PoPoolation2/popoolation2_1201/mpileup2sync.jar
+
 # run PoolSex-analyses
 # generate output data with prefix goldfish_<freq-het>_<freq-hom>_<range-het>_<range-hom>_pool
 $poolsex_analysis --input-file $rootdir/results/mpileup2sync_female_male.sync --output-prefix $rootdir/results/goldfish_0.5_1_0.2_0.05_pool \
