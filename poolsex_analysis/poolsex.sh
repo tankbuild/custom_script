@@ -16,7 +16,7 @@ module load system/Python-3.6.3
 # 1 PoolSex
 if [ ! -d /home/mwen/work/tools/PoolSex ]
 then
-    git clone https://github.com/INRA-LPGP/PoolSex.git
+    git clone git@github.com:tankbuild/PoolSex.git
 fi
 
 # 2 PoolSex-analysis
@@ -45,14 +45,14 @@ fi
 if [ ! -f $rootdir/reads/*.gz ]
 then
     readsdir=/home/mwen/work/Project_PhyloSex.280/Run_A_melas_-_C_auratus.10511/RawData
-    ln -s $readsdir/C_auratus_femelle_S2_L001_R1_001.fastq.gz $rootdir/reads/female_L001_R1.fasta.gz
-    ln -s $readsdir/C_auratus_femelle_S2_L001_R2_001.fastq.gz $rootdir/reads/female_L001_R2.fasta.gz
-    ln -s $readsdir/C_auratus_femelle_S2_L002_R1_001.fastq.gz $rootdir/reads/female_L002_R1.fasta.gz
-    ln -s $readsdir/C_auratus_femelle_S2_L002_R2_001.fastq.gz $rootdir/reads/female_L002_R2.fasta.gz
-    ln -s $readsdir/C_auratus_male_S1_L001_R1_001.fastq.gz $rootdir/reads/male_L001_R1.fasta.gz
-    ln -s $readsdir/C_auratus_male_S1_L001_R2_001.fastq.gz $rootdir/reads/male_L001_R2.fasta.gz
-    ln -s $readsdir/C_auratus_male_S1_L002_R1_001.fastq.gz $rootdir/reads/male_L002_R1.fasta.gz
-    ln -s $readsdir/C_auratus_male_S1_L002_R2_001.fastq.gz $rootdir/reads/male_L002_R2.fasta.gz
+    ln -s $readsdir/C_auratus_femelle_S2_L001_R1_001.fastq.gz $rootdir/reads/female_L001_R1.fastq.gz
+    ln -s $readsdir/C_auratus_femelle_S2_L001_R2_001.fastq.gz $rootdir/reads/female_L001_R2.fastq.gz
+    ln -s $readsdir/C_auratus_femelle_S2_L002_R1_001.fastq.gz $rootdir/reads/female_L002_R1.fastq.gz
+    ln -s $readsdir/C_auratus_femelle_S2_L002_R2_001.fastq.gz $rootdir/reads/female_L002_R2.fastq.gz
+    ln -s $readsdir/C_auratus_male_S1_L001_R1_001.fastq.gz $rootdir/reads/male_L001_R1.fastq.gz
+    ln -s $readsdir/C_auratus_male_S1_L001_R2_001.fastq.gz $rootdir/reads/male_L001_R2.fastq.gz
+    ln -s $readsdir/C_auratus_male_S1_L002_R1_001.fastq.gz $rootdir/reads/male_L002_R1.fastq.gz
+    ln -s $readsdir/C_auratus_male_S1_L002_R2_001.fastq.gz $rootdir/reads/male_L002_R2.fastq.gz
 fi
 
 # path to reference
