@@ -38,10 +38,10 @@ xargs samtools faidx $genome_ref_rename < $to_be_extractedfile > extracted_seqs.
 # Use bedtools getfasta extract portions of a FASTA entry
 # Requires the regions of interest be in BED format.
 # $ head Homo_sapiens.GRCh38_CpG_Islands.bed
-# 1 10413 11207
-# 1 28687 29634
-# 1 51546 51882
-# 1 121270 121549
+# chr1 10413 11207
+# chr1 28687 29634
+# chr1 51546 51882
+# chr1 121270 121549
 
 # The sequences of interest are extracted like this:
 # $ bedtools getfasta -fi Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa -bed Homo_sapiens.GRCh38_CpG_Islands.bed -fo Homo_sapiens.GRCh38_CpG_Islands.fasta
