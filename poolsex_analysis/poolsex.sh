@@ -30,7 +30,7 @@ fi
 poolsex=/home/mwen/work/tools/PoolSex/poolsex.py
 
 # path to PoolSex_analysis
-poolsex_analysis=/home/mwen/work/tools/PoolSex-analyses/bin/poolsex
+psass=/home/mwen/work/tools/PSASS/bin/psass
 
 #root directory for poolsex analysis
 rootdir=/home/mwen/work/goldfish_poolsex_analysis/poolseq
@@ -71,8 +71,8 @@ python $poolsex run -i $rootdir &&
 
 # run PoolSex-analyses
 # generate output data with prefix goldfish_<freq-het>_<freq-hom>_<range-het>_<range-hom>_pool
-$poolsex_analysis --input-file $rootdir/results/mpileup2sync_female_male.sync --output-prefix $rootdir/results/goldfish_0.5_1_0.2_0.05_pool \
-                  --gff-file $gff --male-pool 2 --range-het 0.16
+$psass analyze --input-file $rootdir/results/mpileup2sync_female_male.sync --output-prefix $rootdir/results/goldfish_0.5_1_0.2_0.05_pool \
+                  --gff-file $gff --male-pool 2 --range-het 0.16 --range-hom 0.05
 
 # # clean data
 # python $poolsex.py clean -i $rootdir
