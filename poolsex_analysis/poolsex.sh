@@ -72,7 +72,7 @@ python $poolsex run -i $rootdir &&
 # run PoolSex-analyses
 # generate output data with prefix goldfish_<freq-het>_<freq-hom>_<range-het>_<range-hom>_pool
 $psass analyze --input-file $rootdir/results/mpileup2sync_female_male.sync --output-prefix $rootdir/results/goldfish_0.5_1_0.2_0.05_pool \
-                  --gff-file $gff --male-pool 2 --range-het 0.16 --range-hom 0.05
+                  --gff-file $gff --male-pool 2 --range-het 0.1 --range-hom 0.05
 
 # # clean data
 # python $poolsex.py clean -i $rootdir
