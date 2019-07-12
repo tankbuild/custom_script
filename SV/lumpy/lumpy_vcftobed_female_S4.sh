@@ -17,6 +17,12 @@ cat female_del.vcf | gawk -v OFS='\t' 'match($0, /SVTYPE=(DEL).*SVLEN=-([[:digit
 cat female_del.bed | awk -v sum=0 '{sum += $6} END {print sum/NR}'
 # identifying male specific sequences (female_SU($6) > mean_SU)
 bedtools intersect -wao -f 0.5 -r -a male_del.bed -b ../female/female_del.bed | awk '$14 > 8 && $17 > 0 && $14/$6 > 2' > channel_Y_spe.bed
+
+
+# deletion found in channel catfish
+bedtools intersect -wao -f 0.5 -r -a male_del.bed -b ../female/female_del.bed | awk '$14 > 8 && $17 > 0 && $14/$6 > 2 && $13 <= 5000' | grep CM014015.1 > channel_male_spec_insertions.bed
+# note: 38 deletion identified and 26 of them were verified by IGV
+
 # merge SVs
 SURVIVOR vcftobed multi_female_SU10.vcf 50 100000 multi_female_50_100000.bed
 cat multi_female_50_100000.bed | sort -k1,1 -k2,2n | awk -v OFS='\t' '/DEL|DUP/ {print $0,($5-$2)}' | cut -f1,2,6,7,8,9,10,11,12 > female_50_100000_sorted_len.bed
