@@ -111,7 +111,7 @@ def main():
                 # SA(sex specific allele)
                 SA = ALT
             elif REF != share_allele and share_allele in het:
-                ALT = ','.join(het)
+                ALT = '/'.join(het)
                 SA = list(filter(lambda x: (x != share_allele), het))[0]
             else:
                 pass
