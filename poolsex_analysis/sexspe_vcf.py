@@ -15,6 +15,15 @@ For filtering:
 """
 
 
+def mem_usage(pandas_obj):
+    if isinstance(pandas_obj, pd.DataFrame):
+        usage_b = pandas_obj.memory_usage(deep=True).sum()
+    else:  # we assume if not a df it's a series
+        usage_b = pandas_obj.memory_usage(deep=True)
+    usage_mb = usage_b / 1024 ** 2  # convert bytes to megabytes
+    return "{:03.2f} MB".format(usage_mb)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='Generating a sex specific SNPs variants file',
@@ -42,9 +51,26 @@ def main():
         exit(1)
 
     vcf = pd.DataFrame(columns=["CHROM", "POS", "REF", "ALT", "QUAL", "FILTER", "INFO"])
-    sync = pd.read_csv(args.sync_file, delimiter='\t', header=None)
-    snp = pd.read_csv(args.snp_file, delimiter='\t', header=None)
+    # sync = pd.read_csv(args.sync_file, delimiter='\t', header=None)
+    snp = pd.read_csv(args.snp_file, sep='\t', header=None)
+    # Input sync file sequentially
+    # tricky to save memory when load big data (>1G).
+    df_chunk = pd.read_csv(args.sync_file, chunksize=1000000, header=None, sep='\t')
+    chunk_list = []  # append each chunk df here
 
+    # Each chunk is in df format
+    for chunk in df_chunk:
+        # perform data filtering
+        # chunk_filter = chunk_preprocessing(chunk)
+        # Once the data filtering is done, append the chunk to list
+        chunk.iloc[:, [0, 2, 3, 4]] = chunk.iloc[:, [0, 2, 3, 4]].astype('category')
+        chunk.iloc[:, 1] = chunk.iloc[:, 1].astype('int32')
+        chunk_list.append(chunk)
+        # concat the list into dataframe
+        sync = pd.concat(chunk_list)
+    # print memory usage of sync data
+    print("sync data used memory: {}".format(mem_usage(sync)))
+    print(sync.dtypes)
     # check data information
     # snp.dtypes
     # snp.describe()
@@ -52,6 +78,7 @@ def main():
     # str(snp)
     # snp.ndim
     # snp.shape
+    # sync.info(memory_usage='deep')
 
     # adding columns name, use rename function to rename, and drop function to delete columns
     # snp = snp.drop(columns="new")
@@ -85,12 +112,15 @@ def main():
             # MAF = F_info.sort_values(ascending=False)[1]
             Minor_Allele = F_info.sort_values(ascending=False).index[1].split("_")[1]
             het = [Major_Allele, Minor_Allele]
-            if REF == share_allele and share_allele in het:
-                ALT = list(filter(lambda x: (x != share_allele), het))[0]
+            if REF in het and share_allele in het:
+                ALT = list(filter(lambda x: (x != REF), het))[0]
                 # SA(sex specific allele)
-                SA = ALT
-            elif REF != share_allele and share_allele in het:
-                ALT = '/'.join(het)
+                SA = list(filter(lambda x: (x != share_allele), het))[0]
+            # elif REF != share_allele and share_allele in het and REF in het:
+            #     ALT = ','.join(het)
+            #     SA = list(filter(lambda x: (x != share_allele), het))[0]
+            elif REF not in het and share_allele in het:
+                ALT = ','.join(het)
                 SA = list(filter(lambda x: (x != share_allele), het))[0]
             else:
                 pass
@@ -106,12 +136,12 @@ def main():
             # MAF = M_info.sort_values(ascending=False)[1]
             Minor_Allele = M_info.sort_values(ascending=False).index[1].split("_")[1]
             het = [Major_Allele, Minor_Allele]
-            if REF == share_allele and share_allele in het:
-                ALT = list(filter(lambda x: (x != share_allele), het))[0]
+            if REF in het and share_allele in het:
+                ALT = list(filter(lambda x: (x != REF), het))[0]
                 # SA(sex specific allele)
-                SA = ALT
-            elif REF != share_allele and share_allele in het:
-                ALT = '/'.join(het)
+                SA = list(filter(lambda x: (x != share_allele), het))[0]
+            elif REF not in het and share_allele in het:
+                ALT = ','.join(het)
                 SA = list(filter(lambda x: (x != share_allele), het))[0]
             else:
                 pass
