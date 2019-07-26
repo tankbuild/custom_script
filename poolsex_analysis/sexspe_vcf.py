@@ -55,20 +55,24 @@ def main():
     snp = pd.read_csv(args.snp_file, sep='\t', header=None)
     # Input sync file sequentially
     # tricky to save memory when load big data (>1G).
-    df_chunk = pd.read_csv(args.sync_file, chunksize=1000000, header=None, sep='\t')
-    chunk_list = []  # append each chunk df here
+    # df_chunk = pd.read_csv(args.sync_file, chunksize=1000000, header=None, sep='\t')
+    # chunk_list = []  # append each chunk df here
 
-    # Each chunk is in df format
-    for chunk in df_chunk:
-        # perform data filtering
-        # chunk_filter = chunk_preprocessing(chunk)
-        # Once the data filtering is done, append the chunk to list
-        chunk.iloc[:, [0, 2, 3, 4]] = chunk.iloc[:, [0, 2, 3, 4]].astype('category')
-        chunk.iloc[:, 1] = chunk.iloc[:, 1].astype('int32')
-        chunk_list.append(chunk)
-        # concat the list into dataframe
-        sync = pd.concat(chunk_list)
+    # # Each chunk is in df format
+    # for chunk in df_chunk:
+    #     # perform data filtering
+    #     # chunk_filter = chunk_preprocessing(chunk)
+    #     # Once the data filtering is done, append the chunk to list
+    #     chunk.iloc[:, [0, 2, 3, 4]] = chunk.iloc[:, [0, 2, 3, 4]].astype('category')
+    #     chunk.iloc[:, 1] = chunk.iloc[:, 1].astype('int32')
+    #     # chunk.iloc[:, [2, 3, 4]] = chunk.iloc[:, [2, 3, 4]].astype('category')
+    #     chunk_list.append(chunk)
+    #     # concat the list into dataframe
+    #     sync = pd.concat(chunk_list)
     # print memory usage of sync data
+    sync = pd.read_csv(args.sync_file, header=None, sep='\t',
+                       dtype={0: 'category', 1: 'int32', 2: 'category', 3: 'category', 4: 'category'},
+                       usecols=[0, 1, 2, 3, 4])
     print("sync data used memory: {}".format(mem_usage(sync)))
     print(sync.dtypes)
     # check data information
