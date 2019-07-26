@@ -52,7 +52,7 @@ def main():
 
     vcf = pd.DataFrame(columns=["CHROM", "POS", "REF", "ALT", "QUAL", "FILTER", "INFO"])
     # sync = pd.read_csv(args.sync_file, delimiter='\t', header=None)
-    snp = pd.read_csv(args.snp_file, sep='\t', header=None)
+    snp = pd.read_csv(args.snp_file, sep='\t', header=0)
     # Input sync file sequentially
     # tricky to save memory when load big data (>1G).
     # df_chunk = pd.read_csv(args.sync_file, chunksize=1000000, header=None, sep='\t')
